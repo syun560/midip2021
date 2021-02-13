@@ -21,6 +21,7 @@ class NotePane extends Component {
     }
 
     render() {
+
         const noteItem = this.props.noteEvents.map((noteEvent, index)=>(
             <tr key={index}>
                 <td>{noteEvent.mea}</td>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col } from 'react-bootstrap';
+import { connect } from 'react-redux'
 
 class Instrument extends Component {
 
@@ -44,6 +44,9 @@ class Instrument extends Component {
         // MIDI メッセージを送信
         output.send([0x90, 67, 100]);                                       // ノートオン
         output.send([0x80, 67, 100], window.performance.now() + 500);      // 1秒後にノートオフ
+
+        // outputを登録する
+        this.props.dispatch({type: 'REGISTER_OUTPUT', output: output})
     }
 
     constructor(props){
@@ -86,8 +89,17 @@ class Instrument extends Component {
                         ID: output.id
                     })
                 }
-                if (outPorts.length) this.setState({ selectedOutPortID: outPorts[0].ID })
-                this.setState({ outPorts: outPorts })
+                if (outPorts.length) {
+                    this.setState({ 
+                        selectedOutPortID: outPorts[0].ID
+                    })
+
+                    // outputを登録する
+                    this.props.dispatch({type: 'REGISTER_OUTPUT', output: this.outputs.get(outPorts[0].ID)})
+                }
+                this.setState({ 
+                    outPorts: outPorts
+                })
                 
                 console.log("MIDI READY!!!");
                 this.setState({message: "MIDI READY"})
@@ -129,4 +141,4 @@ class Instrument extends Component {
     }
 }
 
-export default Instrument
+export default connect(state=>state)(Instrument)

@@ -16,18 +16,21 @@ class App extends Component {
 
             <Provider store={MidipStore}>
                 <Sequencer />
+                <hr />
+                <Instrument />
             </Provider>
 
             <hr />
 
-            <Instrument />
-
-            <hr />
-
-            <h4>メモ</h4>
+            <h4>Memo</h4>
             <li><a href="https://github.com/syun560/midip2021">GitHub</a></li>
 
-            <li>Instrument.jsが少し複雑な気がする</li>
+            <li>大きな目標って何なんだ？</li>
+            <li>自動耳コピ</li>
+            <li>公開、使ってもらえること</li>
+            <li></li>
+
+            <li>BPMを正しくするぞ。</li>
             <li>コンソールにMIDIメッセージは出力できているので、インタラクティブな出力をする</li>
             
             <li>Outputが複数ある状況の再現はどうしたらいい？</li>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PianoRoll from './PianoRoll'
 import NotePane from './NotePane'
 import { connect } from 'react-redux'
+import Conductor from './Conductor'
+import Player from './Player'
 
 class Sequencer extends Component {
     doClick(e) {
@@ -20,6 +22,8 @@ class Sequencer extends Component {
         this.doClick = this.doClick.bind(this)
     }
 
+
+
     render() {
         return <div>
             <div className='row mt-4'>
@@ -28,13 +32,14 @@ class Sequencer extends Component {
                     </div>
             
                     <div className='col-md-9'>
+                        <Conductor />
                         <PianoRoll />
                     </div>
-                    
+                <Player />
             </div>
             
             <div className='row'>
-                <button className='btn btn-danger' onClick={this.doClick}>すべて削除</button>
+                <button className='btn btn-danger' onClick={this.doClick}>Del All Event</button>
             </div>
         </div>
     }

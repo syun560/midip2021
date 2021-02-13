@@ -17,14 +17,26 @@ class PianoRollElement extends Component {
         this.setState(state => ({selected: !state.selected}))
         // console.log(row + ', ' + col + ' ' + this.state.selected)
 
-        let action = addEvent({
-            mea: 1,
-            tick: col,
-            note: row,
-            gate: 480,
-            vel: 100
-        })
-        this.props.dispatch(action)
+        if (this.state.selected){
+            this.props.dispatch({
+                type: 'DEL_EVENT',
+                data: {
+                    mea: 1,
+                    tick: col*1,
+                    note: row*1
+                }
+            })
+        }
+        else {
+            let action = addEvent({
+                mea: 1,
+                tick: col*1,
+                note: row*1,
+                gate: 120,
+                vel: 100
+            })
+            this.props.dispatch(action)
+        }
     }
 
     constructor(props){
@@ -42,9 +54,19 @@ class PianoRollElement extends Component {
     
 
     render() {
+        let noteNum = this.props.row
+        let tick = this.props.col
+
+        // イベントを検索し、見つけたらtrueとする（なんか遅くなりそうな実装）
+        let findData = this.props.noteEvents.find(noteEvent=> (
+            noteEvent.note == noteNum && noteEvent.tick == tick
+        ))
+        if (findData === undefined) this.state.selected = false
+        else this.state.selected = true
+
         return (
             <td style={this.state.selected ? this.tdSelected : this.tdUnselected}
-            onClick={this.doClick} data-row={this.props.row} data-col={this.props.col}></td>
+            onClick={this.doClick} data-row={noteNum} data-col={tick}></td>
         )
     }
 }
