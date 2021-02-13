@@ -6,14 +6,14 @@ class Instrument extends Component {
     // Inputを受け取ったときのイベント
     inputEvent(e) {
         let target = e.target;
-        // let device = this.inputDevices.outputs[target.name];
         let message = '';
         let numArray = [];
         // 2桁の16進数にして表示する
         // リアルタイムメッセージ（f8 or feは無視、なんとかして消したい）
         e.data.forEach(val=> {
             // if (val == 0xf8 || val == 0xfe) return
-            numArray.push(('00' + val.toString(16)).substr(-2));
+            // numArray.push(('00' + val.toString(16)).substr(-2)); // 謎
+            numArray.push(val.toString(16))
         });
         if (numArray[0] == 'f8' || numArray[0] == 'fe') return 
         message = numArray.join(' ');
@@ -23,7 +23,6 @@ class Instrument extends Component {
 
         // 2桁の16進数を表示
         console.log(message);
-
     }
 
     // アウトプットセレクトタグが変化した場合
@@ -61,10 +60,8 @@ class Instrument extends Component {
         
         navigator.requestMIDIAccess({sysex: false}).then(
             // 通信成功時
-            (midiAccess) => {
-                // this.setInputs(midiAccess);
-                
-                // Inputデバイスの配列を作成
+            (midiAccess) => {                
+                // InPortの取得、設定
                 let inputIterator = midiAccess.inputs.values();
                 let inPorts = []
                 for (let input = inputIterator.next(); !input.done; input = inputIterator.next()) {
@@ -76,10 +73,8 @@ class Instrument extends Component {
                     // イベント登録
                     value.addEventListener('midimessage', this.inputEvent, false);
                 }
-                this.setState({
-                    selectedInPortID: inPorts[0].ID,
-                    inPorts: inPorts
-                })
+                if (inPorts.length) this.setState({ selectedInPortID: inPorts[0].ID })
+                this.setState({ inPorts: inPorts })
 
                 // OutPortの取得、設定
                 let outPorts = []
@@ -90,16 +85,9 @@ class Instrument extends Component {
                         name: output.name,
                         ID: output.id
                     })
-                    outPorts.push({
-                        device: output,
-                        name: output.name,
-                        ID: output.id
-                    })
                 }
-                this.setState({
-                    selectedOutPortID: outPorts[0].ID, // 配列がない（MIDI出力デバイスがない）場合を考慮してない？
-                    outPorts: outPorts
-                })
+                if (outPorts.length) this.setState({ selectedOutPortID: outPorts[0].ID })
+                this.setState({ outPorts: outPorts })
                 
                 console.log("MIDI READY!!!");
                 this.setState({message: "MIDI READY"})
@@ -118,6 +106,9 @@ class Instrument extends Component {
     render() {
         // セレクトタグの内容を作る
         let n = 0
+        let in_items = this.state.inPorts.map(value =>
+            <option key={n++} value={value.ID}>{value.name} ({value.ID})</option> 
+            )
         let out_items = this.state.outPorts.map(value =>
             <option key={n++} value={value.ID}>{value.name} ({value.ID})</option> 
             )
@@ -126,9 +117,11 @@ class Instrument extends Component {
         <div>
             <p>{this.state.message}</p>
             
-            <p>Input: <select></select></p>
-            <p>Output: <select onChange={this.doChange} defaultValue="-1">{ out_items }</select></p>
-
+            <table><tbody>
+                <tr><td>Input: </td><td><select>{ in_items }</select></td></tr>
+                <tr><td>Output: </td><td><select onChange={this.doChange} defaultValue="-1">{ out_items }</select></td></tr>
+            </tbody></table>
+            
             <button className="btn btn-primary btn-large" onClick={this.doClick}>Play C</button>
             
         </div>
