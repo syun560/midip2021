@@ -4,6 +4,7 @@ import NotePane from './NotePane'
 import { connect } from 'react-redux'
 import Conductor from './Conductor'
 import Player from './Player'
+import ChannelSelector from './ChannelSelector'
 
 class Sequencer extends Component {
     doClick(e) {
@@ -27,14 +28,14 @@ class Sequencer extends Component {
     render() {
         return <div>
             <div className='row mt-4'>
-                    <div className='col-md-3'>
-                        <NotePane />
-                    </div>
-            
-                    <div className='col-md-9'>
-                        <Conductor />
-                        <PianoRoll />
-                    </div>
+                <div className='col-md-3'>
+                    <ChannelSelector />
+                    <NotePane />
+                </div>
+                <div className='col-md-9'>
+                    <Conductor />
+                    <PianoRoll />
+                </div>
                 <Player />
             </div>
             

@@ -21,7 +21,7 @@ class PianoRollElement extends Component {
             this.props.dispatch({
                 type: 'DEL_EVENT',
                 data: {
-                    mea: 1,
+                    mea: this.props.mea,
                     tick: col*1,
                     note: row*1
                 }
@@ -29,13 +29,25 @@ class PianoRollElement extends Component {
         }
         else {
             let action = addEvent({
-                mea: 1,
+                channel: this.props.channel,
+                mea: this.props.mea,
                 tick: col*1,
                 note: row*1,
                 gate: 120,
                 vel: 100
             })
             this.props.dispatch(action)
+
+            // 音をプレビューする
+            this.props.dispatch({
+                type: 'NOTE_ON',
+                data: {
+                    channel: this.props.channel,
+                    note: row*1,
+                    gateMs: 200,
+                    vel: 100
+                }
+            })
         }
     }
 
@@ -59,7 +71,10 @@ class PianoRollElement extends Component {
 
         // イベントを検索し、見つけたらtrueとする（なんか遅くなりそうな実装）
         let findData = this.props.noteEvents.find(noteEvent=> (
-            noteEvent.note == noteNum && noteEvent.tick == tick
+            noteEvent.channel == this.props.channel &&
+            noteEvent.mea == this.props.mea &&
+            noteEvent.note == noteNum &&
+            noteEvent.tick == tick
         ))
         if (findData === undefined) this.state.selected = false
         else this.state.selected = true

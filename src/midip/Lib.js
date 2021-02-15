@@ -1,7 +1,9 @@
 class Lib {
-    static noteON(output, note, gate, vel) {
-        output.send([0x90, note.num, 100])
-        output.send([0x80, 60, 100], window.performance.now() + 100);      // 1秒後にノートオフ
+    static noteNumberToNoteName(num) {
+        const notes_name = ['C','C#','D','D#','E','F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+        const base = Math.floor(num / 12) - 1
+        const offset = num % 12
+        return notes_name[offset] + base.toString()
     }
 }
 

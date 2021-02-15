@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ChordPlayer from './ChordPlayer';
 
 class Instrument extends Component {
 
@@ -61,7 +62,7 @@ class Instrument extends Component {
             selectedInPortID: '',
         }
         
-        navigator.requestMIDIAccess({sysex: false}).then(
+        navigator.requestMIDIAccess({sysex: true}).then(
             // 通信成功時
             (midiAccess) => {                
                 // InPortの取得、設定
@@ -126,16 +127,17 @@ class Instrument extends Component {
             )
 
         return (
-        <div>
-            <p>{this.state.message}</p>
-            
-            <table><tbody>
-                <tr><td>Input: </td><td><select>{ in_items }</select></td></tr>
-                <tr><td>Output: </td><td><select onChange={this.doChange} defaultValue="-1">{ out_items }</select></td></tr>
-            </tbody></table>
-            
-            <button className="btn btn-primary btn-large" onClick={this.doClick}>Play C</button>
-            
+        <div className='row'>
+            <div className='col-md-3'>
+                <p>{this.state.message}</p>
+                <table><tbody>
+                    <tr><td>Input: </td><td><select>{ in_items }</select></td></tr>
+                    <tr><td>Output: </td><td><select onChange={this.doChange} defaultValue="-1">{ out_items }</select></td></tr>
+                </tbody></table>
+            </div>
+            <div className='col-md-3'>
+                <ChordPlayer />
+            </div>
         </div>
         )
     }
