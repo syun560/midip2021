@@ -64,6 +64,7 @@ class App extends Component {
             <li><a href="https://musiclab.chromeexperiments.com/Song-Maker/song/5766211904733184">Song Maker</a></li>
             <li>KORG-DS-10</li>
             <li><a href="http://www2.odn.ne.jp/~cbu69490/MIDI/MIDIlect/MIDIlect3.html">MIDIメッセージの分類</a></li>
+            <li><a href="https://magenta.tensorflow.org/demos/performance_rnn/index.html">Performance RNN</a></li>
         </div>
     )
     }
