@@ -15,7 +15,7 @@ const persistConfig = {
     key: 'midip',
     storage: storage,
     blacklist: ['output'],
-    whitelist: ['noteEvents']
+    whitelist: ['noteEvents','channelData']
 }
 
 // パーシストレデューサの設定
@@ -63,7 +63,7 @@ class App extends Component {
             <li><a href="http://www.yk.rim.or.jp/~kamide/music/chordhelper/">MIDI Chord Helper</a></li>
             <li><a href="https://musiclab.chromeexperiments.com/Song-Maker/song/5766211904733184">Song Maker</a></li>
             <li>KORG-DS-10</li>
-            
+            <li><a href="http://www2.odn.ne.jp/~cbu69490/MIDI/MIDIlect/MIDIlect3.html">MIDIメッセージの分類</a></li>
         </div>
     )
     }

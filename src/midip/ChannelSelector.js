@@ -13,7 +13,7 @@ class ChannelSelector extends Component {
 
     constructor(props){
         super(props)
-        this.channelName = ['Piano', 'Bass', 'Drums']
+        this.channelName = ['Piano', 'Bass', 'Piano','Piano','Piano','Piano','Piano','Piano','Piano','Piano','Piano','Drums']
 
         // ステートの設定
         this.state = {
@@ -25,14 +25,12 @@ class ChannelSelector extends Component {
     render() {
         // セレクトタグの内容を作る
         let n = 0
-        let items = this.channelName.map(value =>
-            <option key={n} value={n}>Ch.{n++} {value}</option> 
+        let items = this.props.channelData.map(value =>
+            <option key={n} value={n}>Ch.{n++} {value.name}</option> 
         )
 
         return (
-        <div>
             <select onChange={this.ChangeSelector} defaultValue="-1">{ items }</select>
-        </div>
         )
     }
 }

@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Conductor from './Conductor'
 import Player from './Player'
 import ChannelSelector from './ChannelSelector'
+import ProgramChanger from './ProgramChanger'
 
 class Sequencer extends Component {
     doClick(e) {
@@ -29,7 +30,10 @@ class Sequencer extends Component {
         return <div>
             <div className='row mt-4'>
                 <div className='col-md-3'>
-                    <ChannelSelector />
+                    <div>
+                        <ChannelSelector />
+                        <ProgramChanger />
+                    </div>
                     <NotePane />
                 </div>
                 <div className='col-md-9'>

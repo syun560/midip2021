@@ -7,7 +7,45 @@ const initData = {
     ],
     output: null,
     mea: 1,
-    channel: 0
+    channel: 0,
+    channelData: [
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Bass'
+        },
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Piano'
+        },
+        {
+            program: 0,
+            name: 'Drums'
+        },
+    ]
 }
 
 // 配列のソート
@@ -35,7 +73,8 @@ export function midipReducer(state=initData, action) {
             output: state.output,
             noteEvents: new_data,
             mea: state.mea,
-            channel: state.channel
+            channel: state.channel,
+            channelData: state.channelData
         }
     case 'DEL_EVENT':
         let del_data = state.noteEvents.filter(
@@ -50,14 +89,16 @@ export function midipReducer(state=initData, action) {
             output: state.output,
             noteEvents: del_data,
             mea: state.mea,
-            channel: state.channel
+            channel: state.channel,
+            channelData: state.channelData
         }
     case 'DEL_ALL':
         return {
             output: state.output,
             noteEvents: initData.noteEvents,
             mea: state.mea,
-            channel: state.channel
+            channel: state.channel,
+            channelData: state.channelData
         }
 
     // MIDIデバイス操作-------------------------------------
@@ -66,19 +107,37 @@ export function midipReducer(state=initData, action) {
             output: action.output,
             noteEvents: state.noteEvents,
             mea: state.mea,
-            channel: state.channel
+            channel: state.channel,
+            channelData: state.channelData
         }
     case 'NOTE_ON':
-        let ch = 0
-        if (action.data.ch === undefined) ch = 0
-        else ch = action.data.ch
-        state.output.send([0x90 + ch, action.data.note, action.data.vel])
-        state.output.send([0x80 + ch, action.data.note, action.data.vel], window.performance.now() + action.data.gateMs);      // 1秒後にノートオフ
-        break
+        {
+            let ch = 0
+            if (action.data.channel === undefined) ch = 0
+            else ch = action.data.channel
+            state.output.send([0x90 + ch, action.data.note, action.data.vel])
+            state.output.send([0x80 + ch, action.data.note, action.data.vel], window.performance.now() + action.data.gateMs);      // 1秒後にノートオフ
+            break
+        }
     case 'ALL_NOTE_OFF':
         state.output.send([0xB0, 0x7B, 0])
         break
-    
+    case 'PROGRAM_CHANGE':
+        {
+            const ch = state.channel
+            const num = action.programNumber
+            state.output.send([0xC0 + ch, num])
+            let newChannelData = state.channelData.slice()
+            newChannelData[ch].program = num
+            return {
+                output: state.output,
+                noteEvents: state.noteEvents,
+                mea: state.mea,
+                channel: state.channel,
+                channelData: newChannelData
+            }
+        }
+            
     // シーケンス操作--------------------------------------
     case 'MOVE_MEA':
         let mea = action.mea
@@ -89,7 +148,8 @@ export function midipReducer(state=initData, action) {
             output: state.output,
             noteEvents: state.noteEvents,
             mea: mea,
-            channel: state.channel
+            channel: state.channel,
+            channelData: state.channelData
         }
 
     // チャンネル操作-------------------------------------
@@ -101,7 +161,8 @@ export function midipReducer(state=initData, action) {
             output: state.output,
             noteEvents: state.noteEvents,
             mea: state.mea,
-            channel: channel
+            channel: channel,
+            channelData: state.channelData
         }
     default: 
         break

@@ -46,6 +46,7 @@ class Conductor extends Component {
                 this.props.dispatch({
                     type: 'NOTE_ON',
                     data: {
+                        channel: d.channel,
                         note: d.note,
                         gateMs: 240 * 1000 / this.state.bpm * (d.gate / (480 * 4)) - 1,
                         vel: d.vel,

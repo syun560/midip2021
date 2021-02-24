@@ -30,6 +30,7 @@ class NotePane extends Component {
         // ペインに表示されるテーブルを生成
         const noteItem = channelItem.map((noteEvent, index)=>(
             <tr key={index}>
+                <td>{noteEvent.channel}</td>
                 <td>{noteEvent.mea}</td>
                 <td>{noteEvent.tick}</td>
                 <td>{Lib.noteNumberToNoteName(noteEvent.note)}</td>
@@ -43,6 +44,7 @@ class NotePane extends Component {
                 <table className="table table-sm">
                     <thead>
                         <tr>
+                            <th>Ch.</th>
                             <th>Mea</th>
                             <th>Tick</th>
                             <th>Event</th>
