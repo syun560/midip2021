@@ -1,27 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Lib from './Lib'
 
 class ChordPlayerCell extends Component {
 
     // テストで音を鳴らす
     doClick() {
-        const noteEvents = [
-            {
-                note: 60,
-                vel: 100,
-                gateMs: 500
-            },
-            {
-                note: 64,
-                vel: 100,
-                gateMs: 500
-            },
-            {
-                note: 67,
-                vel: 100,
-                gateMs: 500
-            },
-        ]
+        const chord = this.props.chord
+        const noteEvents = Lib.chordNameToNoteEvents(chord)
+        
         noteEvents.map(noteEvent=>{
             this.props.dispatch({
                 type: 'NOTE_ON',
@@ -41,10 +28,45 @@ class ChordPlayerCell extends Component {
     }
 
     render() {
+        // 調による色分け
+        let style
+
+        const diff = (this.props.nowKey - this.props.index + 24) % 12
+        if (diff == 1 || diff == 0 || diff == 11) {
+            style = {
+                background: 'pink',
+                cursor: 'pointer'
+            }
+        }
+        else if (diff == 2 || diff == 3 || diff == 4){
+            style = {
+                background: 'cyan',
+                cursor: 'pointer'
+            }
+        }
+        else if (diff == 5 || diff == 6 || diff == 7){
+            style = {
+                background: 'gray',
+                cursor: 'pointer'
+            }
+        }
+        else if (diff == 8 || diff == 9 || diff == 10){
+            style = {
+                background: 'yellow',
+                cursor: 'pointer'
+            }
+        }
+        else {
+            style = {
+                background: 'gray',
+                cursor: 'pointer'
+            }
+        }
+
         return (
-        <div>            
-            <button className="btn btn-primary btn-large" onClick={this.doClick}>Play C</button>
-        </div>
+        <td onClick={this.doClick} style={style}>           
+            {this.props.chord}
+        </td>
         )
     }
 }

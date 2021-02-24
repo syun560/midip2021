@@ -72,7 +72,7 @@ class Conductor extends Component {
         
         // 小節の終わりの一個前のtickに来たら、delayTimeを少し短くする（無理やりな実装）
         let delayTime = 240 * 1000 / this.state.bpm / this.maxTick
-        if (nextTick == this.maxTick - 1 && !this.state.isLoop) delayTime -= 40
+        if (nextTick == this.maxTick - 1 && !this.state.isLoop) delayTime -= 80
         
         this.timer = setTimeout(this.Proceed, delayTime )
     }
@@ -87,6 +87,9 @@ class Conductor extends Component {
 
     ChangeSolo(e) {
         this.setState({isSolo: e.target.checked})
+    }
+    ChangeTick(e) {
+        this.setState({nowTick: e.target.getAttribute('data-tick')*1})
     }
 
     constructor(props){
@@ -106,12 +109,13 @@ class Conductor extends Component {
         this.ChangeBPM = this.ChangeBPM.bind(this)
         this.ChangeLoop = this.ChangeLoop.bind(this)
         this.ChangeSolo = this.ChangeSolo.bind(this)
+        this.ChangeTick = this.ChangeTick.bind(this)
     }
 
     render() {
         let ticks = []
         for (let i = 0; i < this.maxTick; i++) {
-            ticks.push(<td key={i} style={this.state.nowTick == i ? this.tdNow : this.td}></td>)
+            ticks.push(<td key={i} data-tick={i} onClick={this.ChangeTick} style={this.state.nowTick == i ? this.tdNow : this.td}></td>)
         }
 
         return (

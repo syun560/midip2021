@@ -129,7 +129,6 @@ class Instrument extends Component {
         return (
         <div className='row'>
             <div className='col-md-3'>
-                <p>{this.state.message}</p>
                 <table><tbody>
                     <tr><td>Input: </td><td><select>{ in_items }</select></td></tr>
                     <tr><td>Output: </td><td><select onChange={this.doChange} defaultValue="-1">{ out_items }</select></td></tr>

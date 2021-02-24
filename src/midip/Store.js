@@ -40,6 +40,7 @@ export function midipReducer(state=initData, action) {
     case 'DEL_EVENT':
         let del_data = state.noteEvents.filter(
             noteEvent=>(
+                noteEvent.channel != action.data.channel ||
                 noteEvent.mea != action.data.mea ||
                 noteEvent.tick != action.data.tick ||
                 noteEvent.note != action.data.note
@@ -73,12 +74,10 @@ export function midipReducer(state=initData, action) {
         else ch = action.data.ch
         state.output.send([0x90 + ch, action.data.note, action.data.vel])
         state.output.send([0x80 + ch, action.data.note, action.data.vel], window.performance.now() + action.data.gateMs);      // 1秒後にノートオフ
-        return {
-            output: state.output,
-            noteEvents: state.noteEvents,
-            mea: state.mea,
-            channel: state.channel
-        }
+        break
+    case 'ALL_NOTE_OFF':
+        state.output.send([0xB0, 0x7B, 0])
+        break
     
     // シーケンス操作--------------------------------------
     case 'MOVE_MEA':
@@ -105,8 +104,9 @@ export function midipReducer(state=initData, action) {
             channel: channel
         }
     default: 
-        return state
+        break
     }
+    return state
 }
 
 
