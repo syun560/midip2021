@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/static/js/main.785eeeb1.chunk.js",
-    "main.js.map": "/static/js/main.785eeeb1.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1713cfe5.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1713cfe5.js.map",
-    "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
-    "static/js/2.fc11ecdc.chunk.js": "/static/js/2.fc11ecdc.chunk.js",
-    "static/js/2.fc11ecdc.chunk.js.map": "/static/js/2.fc11ecdc.chunk.js.map",
-    "static/js/3.017c5aef.chunk.js": "/static/js/3.017c5aef.chunk.js",
-    "static/js/3.017c5aef.chunk.js.map": "/static/js/3.017c5aef.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.ea1455b2.chunk.css.map": "/static/css/main.ea1455b2.chunk.css.map",
-    "static/js/2.fc11ecdc.chunk.js.LICENSE.txt": "/static/js/2.fc11ecdc.chunk.js.LICENSE.txt"
+    "main.css": "/midip2021/static/css/main.ea1455b2.chunk.css",
+    "main.js": "/midip2021/static/js/main.5ed0c85d.chunk.js",
+    "main.js.map": "/midip2021/static/js/main.5ed0c85d.chunk.js.map",
+    "runtime-main.js": "/midip2021/static/js/runtime-main.a50107c6.js",
+    "runtime-main.js.map": "/midip2021/static/js/runtime-main.a50107c6.js.map",
+    "static/css/2.150d169a.chunk.css": "/midip2021/static/css/2.150d169a.chunk.css",
+    "static/js/2.944042c9.chunk.js": "/midip2021/static/js/2.944042c9.chunk.js",
+    "static/js/2.944042c9.chunk.js.map": "/midip2021/static/js/2.944042c9.chunk.js.map",
+    "static/js/3.69c91442.chunk.js": "/midip2021/static/js/3.69c91442.chunk.js",
+    "static/js/3.69c91442.chunk.js.map": "/midip2021/static/js/3.69c91442.chunk.js.map",
+    "index.html": "/midip2021/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/midip2021/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.ea1455b2.chunk.css.map": "/midip2021/static/css/main.ea1455b2.chunk.css.map",
+    "static/js/2.944042c9.chunk.js.LICENSE.txt": "/midip2021/static/js/2.944042c9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.1713cfe5.js",
+    "static/js/runtime-main.a50107c6.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.fc11ecdc.chunk.js",
+    "static/js/2.944042c9.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.785eeeb1.chunk.js"
+    "static/js/main.5ed0c85d.chunk.js"
   ]
 }
