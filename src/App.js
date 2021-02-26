@@ -30,9 +30,13 @@ class App extends Component {
         super(props)
     }
 
+    style = {
+        background: "#FDFDFD"
+    }
+
     render() {
     return (
-        <div className="container-fluid">
+        <div className="container-fluid" style={this.style}>
             <Provider store={store}>
                 <PersistGate loading={<p>loading...</p>} persistor={pstore}>
                     <Sequencer />
@@ -46,25 +50,14 @@ class App extends Component {
             <h4>Memo</h4>
             <li><a href="https://github.com/syun560/midip2021">GitHub</a></li>
 
-            <h5>目的</h5>
-            <li>自動耳コピ</li>
-            <li>公開、使ってもらえること</li>
-            <li>タブ譜作成</li>
-            <li>MIDI出力</li>
-            <li></li>
-
-            <li>コンソールにMIDIメッセージは出力できているので、インタラクティブな出力をする</li>
-            
-            <li>Program Changeのイベントも送信できるようにしよう、セレクトタグか？</li>
-
-            <li>キーボードショートカット</li>
-
             <h4>参考</h4>
             <li><a href="http://www.yk.rim.or.jp/~kamide/music/chordhelper/">MIDI Chord Helper</a></li>
             <li><a href="https://musiclab.chromeexperiments.com/Song-Maker/song/5766211904733184">Song Maker</a></li>
             <li>KORG-DS-10</li>
             <li><a href="http://www2.odn.ne.jp/~cbu69490/MIDI/MIDIlect/MIDIlect3.html">MIDIメッセージの分類</a></li>
             <li><a href="https://magenta.tensorflow.org/demos/performance_rnn/index.html">Performance RNN</a></li>
+            <li><a href="https://weva.cloud/?p=284">Web乗で使える音楽ツールまとめ</a></li>
+            <li><a href="https://qiita.com/to-lz1/items/94747b67ec97ab10f878">Web Audio API+Reactでブラウザで動くシーケンサを作る</a></li>
         </div>
     )
     }
