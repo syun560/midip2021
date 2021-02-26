@@ -56,7 +56,7 @@ class App extends Component {
             <li>KORG-DS-10</li>
             <li><a href="http://www2.odn.ne.jp/~cbu69490/MIDI/MIDIlect/MIDIlect3.html">MIDIメッセージの分類</a></li>
             <li><a href="https://magenta.tensorflow.org/demos/performance_rnn/index.html">Performance RNN</a></li>
-            <li><a href="https://weva.cloud/?p=284">Web乗で使える音楽ツールまとめ</a></li>
+            <li><a href="https://weva.cloud/?p=284">Web上で使える音楽ツールまとめ</a></li>
             <li><a href="https://qiita.com/to-lz1/items/94747b67ec97ab10f878">Web Audio API+Reactでブラウザで動くシーケンサを作る</a></li>
         </div>
     )
