@@ -5,14 +5,15 @@ const initData = {
     songs: [
         {
             id: 1,
-            name: 'Song name',
-            updated: '2020-01-01',
+            name: 'Sample Song',
+            updated: '2021-01-01',
             author: 'syun560',
             channelData: [{
                 program: 0,
                 name: 'Piano'
             }],
-            noteEvents:[]
+            noteEvents:[],
+            tempo: 12
         }
     ],
     noteEvents: [],
@@ -178,6 +179,8 @@ export function midipReducer(state=initData, action) {
             console.log("can't find song of selected ID: " + action.id)
             break
         }
+        // プログラムリセット
+        foundSong.channelData.map((ch, index) => state.output.send([0xC0 + index, ch.program]))
 
         return {
             ...state,

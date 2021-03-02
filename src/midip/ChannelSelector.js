@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Lib from './Lib'
 
 class ChannelSelector extends Component {
 
@@ -20,7 +21,6 @@ class ChannelSelector extends Component {
 
     constructor(props){
         super(props)
-        this.channelName = ['Piano', 'Bass', 'Piano','Piano','Piano','Piano','Piano','Piano','Piano','Piano','Piano','Drums']
 
         // ステートの設定
         this.state = {
@@ -33,13 +33,13 @@ class ChannelSelector extends Component {
     render() {
         // セレクトタグの内容を作る
         let n = 0
-        let items = this.props.channelData.map(value =>
-            <option key={n} value={n}>Ch.{n++} {value.name}</option> 
+        let items = this.props.channelData.map(channel =>
+            <option key={n} value={n}>Ch.{n++} {Lib.programName[channel.program]}</option> 
         )
 
         return (
             <>
-            <select onChange={this.ChangeSelector} defaultValue="-1">{ items }</select>
+            <select onChange={this.ChangeSelector} defaultValue="-1" value={this.props.channel}>{ items }</select>
             <button className="btn btn-secondary btn-sm" onClick={this.AddChannel}>+</button>
             </>
         )

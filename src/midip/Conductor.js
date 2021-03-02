@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {Player} from './Player'
-import Lib from './Lib'
-import { findDOMNode } from 'react-dom'
 
 class Conductor extends Component {
     th = {
@@ -125,8 +122,10 @@ class Conductor extends Component {
         return (
             <div>
                 <p>
+                    {/* tempo */}
+                    <input type="number" value={this.state.bpm} min="10" max="300" onChange={this.ChangeBPM} />
+                    
                     {/* 再生・停止ボタン（別コンポーネントのほうがいい？） */}
-                    <input type="number" value={this.state.bpm} min="0" max="300" onChange={this.ChangeBPM} />
                     <button className="btn btn-primary" onClick={this.PlayToggle}>
                         {this.state.isPlaying ? 'Playing' : 'Play'}
                     </button>

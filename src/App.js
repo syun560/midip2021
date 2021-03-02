@@ -17,7 +17,7 @@ const persistConfig = {
     key: 'midip',
     storage: storage,
     blacklist: ['output'],
-    whitelist: ['noteEvents','channelData']
+    whitelist: ['songs', 'noteEvents','channelData']
 }
 
 // パーシストレデューサの設定
@@ -62,6 +62,8 @@ class App extends Component {
             <li><a href="https://magenta.tensorflow.org/demos/performance_rnn/index.html">Performance RNN</a></li>
             <li><a href="https://weva.cloud/?p=284">Web上で使える音楽ツールまとめ</a></li>
             <li><a href="https://qiita.com/to-lz1/items/94747b67ec97ab10f878">Web Audio API+Reactでブラウザで動くシーケンサを作る</a></li>
+
+            <footer class="text-center text-black-50">©syun560/2021</footer>
         </div>
     )
     }
