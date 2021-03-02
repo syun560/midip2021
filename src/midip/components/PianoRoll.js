@@ -80,7 +80,7 @@ class PianoRoll extends Component {
         }
 
         // ピアノロール生成
-        const rows = notes.map((fuga, indexRow) => {
+        const roll = notes.map((fuga, indexRow) => {
             const note = 127 - indexRow
             return (
                 <tr key={fuga} style={this.rollStyle(note)}>
@@ -100,7 +100,7 @@ class PianoRoll extends Component {
                 {/* ピアノロール表示 */}
                 <div style={this.box}>
                 <table className="table table-bordered table-sm"><tbody>
-                    {rows}
+                    {roll}
                 </tbody></table>
                 </div>
 

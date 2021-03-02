@@ -56,16 +56,18 @@ class SongSelector extends Component {
             </Modal.Header>
             
             <Modal.Body>
-                <Table>
-                <tbody>
+                <table className="table table-hover">
+                <thead className="thead-light">
                     <tr>
                         <th>Song Name</th>
                         <th>Updated</th>
                         <th>Author</th>
                     </tr>
+                </thead>
+                <tbody>
                     {items}
                 </tbody>
-                </Table>
+                </table>
             </Modal.Body>
             
             <Modal.Footer>
