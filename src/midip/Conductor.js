@@ -15,6 +15,9 @@ class Conductor extends Component {
         width: '50px',
         background: 'yellow'
     }
+    clicker = {
+        overflowY: 'scroll',
+    }
     maxTick = 16
 
     PlayToggle() {
@@ -138,10 +141,12 @@ class Conductor extends Component {
                 </p>
 
                 {/* シーケンスクリック（横に流れていくやつ）表示 */}
+                <div style={this.clicker}>
                 <table className="table table-bordered table-sm"><tbody><tr>
                     <th style={this.th}>4/4</th>
                     {ticks}
                 </tr></tbody></table>
+                </div>
             </div>
         )
     }

@@ -1,7 +1,6 @@
 import './App.css'
 import React, { Component } from 'react'
-import Instrument from './midip/Instrument'
-import Sequencer from './midip/Sequencer'
+
 import { Provider } from 'react-redux'
 import MidipStore, { midipReducer } from './midip/Store'
 import { createStore } from 'redux'
@@ -9,6 +8,9 @@ import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
+
+import Instrument from './midip/Instrument'
+import Sequencer from './midip/Sequencer'
 
 // Redux Persistの設定
 const persistConfig = {
@@ -31,8 +33,9 @@ class App extends Component {
     }
 
     style = {
-        background: "#FDFDFD"
+        background: "#FDFDFD",
     }
+
 
     render() {
     return (
@@ -42,6 +45,7 @@ class App extends Component {
                     <Sequencer />
                     <hr />
                     <Instrument />
+
                 </PersistGate>
             </Provider>
 

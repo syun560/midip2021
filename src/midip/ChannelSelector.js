@@ -11,6 +11,13 @@ class ChannelSelector extends Component {
         })
     }
 
+    // チャンネルを追加する
+    AddChannel() {
+        this.props.dispatch({
+            type: 'ADD_CHANNEL',
+        })
+    }
+
     constructor(props){
         super(props)
         this.channelName = ['Piano', 'Bass', 'Piano','Piano','Piano','Piano','Piano','Piano','Piano','Piano','Piano','Drums']
@@ -20,6 +27,7 @@ class ChannelSelector extends Component {
         }
 
         this.ChangeSelector = this.ChangeSelector.bind(this)
+        this.AddChannel = this.AddChannel.bind(this)
     }
 
     render() {
@@ -30,7 +38,10 @@ class ChannelSelector extends Component {
         )
 
         return (
+            <>
             <select onChange={this.ChangeSelector} defaultValue="-1">{ items }</select>
+            <button className="btn btn-secondary btn-sm" onClick={this.AddChannel}>+</button>
+            </>
         )
     }
 }

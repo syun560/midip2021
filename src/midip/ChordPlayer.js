@@ -20,7 +20,7 @@ class ChordPlayer extends Component {
 
         // ステートの設定
         this.state = {
-            nowKey: 11
+            nowKey: 11,
         }
 
         this.doClick = this.doClick.bind(this)
@@ -46,8 +46,8 @@ class ChordPlayer extends Component {
     render() {
         // td作成
         const item0 = this.circleOfFifthKey  .map((name, index)=><th key={index} style={this.createStyle(index)} onClick={this.doClick} data-key={index}>{name}</th>)
-        const item1 = this.circleOfFifthMajor.map((name, index)=><ChordPlayerCell key={index} index={index} nowKey={this.state.nowKey} chord={name} />)
-        const item2 = this.circleOfFifthMinor.map((name, index)=><ChordPlayerCell key={index} index={index} nowKey={this.state.nowKey} chord={name} />)
+        const item1 = this.circleOfFifthMajor.map((name, index)=><ChordPlayerCell key={index} index={index} nowKey={this.state.nowKey} chord={name + (this.state.isSeventh ? '7' : '')} />)
+        const item2 = this.circleOfFifthMinor.map((name, index)=><ChordPlayerCell key={index} index={index} nowKey={this.state.nowKey} chord={name + (this.state.isSeventh ? '7' : '')} />)
 
         return (
             <table className='table table-bordered'><tbody>

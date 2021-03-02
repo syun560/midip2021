@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 class ProgramChanger extends Component {
 
-    // テストで音を鳴らす
+    // Program Change
     ChangeSelector(e) {
         this.props.dispatch({
             type: 'PROGRAM_CHANGE',

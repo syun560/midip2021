@@ -122,9 +122,7 @@ class PianoRoll extends Component {
                     {/* プレビューボタン */}
                     <label>Preview: </label>
                     <input type="checkbox" id="single" onChange={this.changePreview} checked={this.state.isPreview} />
-                </p>
-
-                
+                </p>                
             </div>
         )
     }

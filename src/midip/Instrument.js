@@ -104,6 +104,11 @@ class Instrument extends Component {
                 
                 console.log("MIDI READY!!!");
                 this.setState({message: "MIDI READY"})
+
+                // チャンネルを初期化する（Programのセットを行う）
+                this.props.dispatch({
+                    type: 'PROGRAM_SET_ALL'
+                })
             },
             // 通信失敗時
             (msg) => {

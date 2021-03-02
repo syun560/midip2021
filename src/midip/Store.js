@@ -2,9 +2,20 @@ import  { createStore } from 'redux'
 
 // 初期値
 const initData = {
-    noteEvents: [
-        
+    songs: [
+        {
+            id: 1,
+            name: 'Song name',
+            updated: '2020-01-01',
+            author: 'syun560',
+            channelData: [{
+                program: 0,
+                name: 'Piano'
+            }],
+            noteEvents:[]
+        }
     ],
+    noteEvents: [],
     output: null,
     mea: 1,
     channel: 0,
@@ -16,30 +27,6 @@ const initData = {
         {
             program: 0,
             name: 'Bass'
-        },
-        {
-            program: 0,
-            name: 'Piano'
-        },
-        {
-            program: 0,
-            name: 'Piano'
-        },
-        {
-            program: 0,
-            name: 'Piano'
-        },
-        {
-            program: 0,
-            name: 'Piano'
-        },
-        {
-            program: 0,
-            name: 'Piano'
-        },
-        {
-            program: 0,
-            name: 'Piano'
         },
         {
             program: 0,
@@ -70,11 +57,8 @@ export function midipReducer(state=initData, action) {
         new_data.push(action.data)
         sortNotes(new_data)
         return {
-            output: state.output,
-            noteEvents: new_data,
-            mea: state.mea,
-            channel: state.channel,
-            channelData: state.channelData
+            ...state,
+            noteEvents: new_data
         }
     case 'DEL_EVENT':
         let del_data = state.noteEvents.filter(
@@ -86,29 +70,20 @@ export function midipReducer(state=initData, action) {
             )
         )
         return {
-            output: state.output,
+            ...state,
             noteEvents: del_data,
-            mea: state.mea,
-            channel: state.channel,
-            channelData: state.channelData
         }
     case 'DEL_ALL':
         return {
-            output: state.output,
+            ...state,
             noteEvents: initData.noteEvents,
-            mea: state.mea,
-            channel: state.channel,
-            channelData: state.channelData
         }
 
     // MIDIデバイス操作-------------------------------------
     case 'REGISTER_OUTPUT':
         return {
+            ...state,
             output: action.output,
-            noteEvents: state.noteEvents,
-            mea: state.mea,
-            channel: state.channel,
-            channelData: state.channelData
         }
     case 'NOTE_ON':
         {
@@ -122,6 +97,9 @@ export function midipReducer(state=initData, action) {
     case 'ALL_NOTE_OFF':
         state.output.send([0xB0, 0x7B, 0])
         break
+    case 'PROGRAM_SET_ALL':
+        state.channelData.map((ch, index) => state.output.send([0xC0 + index, ch.program]))
+        break
     case 'PROGRAM_CHANGE':
         {
             const ch = state.channel
@@ -130,13 +108,11 @@ export function midipReducer(state=initData, action) {
             let newChannelData = state.channelData.slice()
             newChannelData[ch].program = num
             return {
-                output: state.output,
-                noteEvents: state.noteEvents,
-                mea: state.mea,
-                channel: state.channel,
+                ...state,
                 channelData: newChannelData
             }
         }
+        
             
     // シーケンス操作--------------------------------------
     case 'MOVE_MEA':
@@ -145,11 +121,8 @@ export function midipReducer(state=initData, action) {
         if (mea < 1) mea = 1
         
         return {
-            output: state.output,
-            noteEvents: state.noteEvents,
+            ...state,
             mea: mea,
-            channel: state.channel,
-            channelData: state.channelData
         }
 
     // チャンネル操作-------------------------------------
@@ -158,12 +131,62 @@ export function midipReducer(state=initData, action) {
         if (channel > 15) channel = 15
         if (channel < 0) channel = 0
         return {
-            output: state.output,
-            noteEvents: state.noteEvents,
-            mea: state.mea,
+            ...state,
             channel: channel,
-            channelData: state.channelData
         }
+    case 'ADD_CHANNEL':
+        let newChannel = state.channelData.length
+        if (newChannel > 15) break
+        console.log(newChannel)
+        let newChannelData = state.channelData.slice()
+        newChannelData.push({
+            program: 0,
+            name: 'Piano'
+        })
+        return {
+            ...state,
+            channelData: newChannelData,
+            channel: newChannel
+        }
+
+    // Song操作-------------------------------------
+    case 'SAVE_SONG':
+        // 日付オブジェクトを文字列にして更新する
+        let d = new Date()
+        let date = d.getFullYear() + '/' + (d.getMonth()+1) + '/' + d.getDay() + ' ' +  d.getHours() + ':' + d.getMinutes()
+
+        // 配列の内容をコピーする
+        let newSongs = state.songs.slice()
+        let newSong = {
+            id: state.songs[state.songs.length - 1].id + 1,
+            name: action.name,
+            updated: date,
+            author: 'syun560',
+            channelData: state.channelData,
+            noteEvents: state.noteEvents
+        }
+        newSongs.push(newSong)
+
+        return {
+            ...state,
+            songs: newSongs
+        }
+    case 'OPEN_SONG':
+        // 指定されたidの曲を検索
+        let foundSong = state.songs.find(song => song.id === action.id)
+        if (foundSong===undefined) {
+            console.log("can't find song of selected ID: " + action.id)
+            break
+        }
+
+        return {
+            ...state,
+            channelData: [...foundSong.channelData],
+            noteEvents: [...foundSong.noteEvents],
+            mea: initData.mea,
+            channel: initData.channel
+        }
+        
     default: 
         break
     }

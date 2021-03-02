@@ -6,6 +6,9 @@ import Conductor from './Conductor'
 import Player from './Player'
 import ChannelSelector from './ChannelSelector'
 import ProgramChanger from './ProgramChanger'
+import SongSelector from './SongSelector'
+import SaveDialog from './SaveDialog'
+
 
 class Sequencer extends Component {
     doClick(e) {
@@ -24,27 +27,29 @@ class Sequencer extends Component {
         this.doClick = this.doClick.bind(this)
     }
 
-
-
     render() {
         return <div>
             <div className='row mt-4'>
+                
                 <div className='col-md-3'>
                     <div>
+                        <div>
+                            <SongSelector />
+                            <SaveDialog />
+                        </div>
                         <ChannelSelector />
                         <ProgramChanger />
                     </div>
                     <NotePane />
+                    <button className='btn btn-danger' onClick={this.doClick}>Del All Event</button>
                 </div>
+
                 <div className='col-md-9'>
                     <Conductor />
                     <PianoRoll />
                 </div>
+                
                 <Player />
-            </div>
-            
-            <div className='row'>
-                <button className='btn btn-danger' onClick={this.doClick}>Del All Event</button>
             </div>
         </div>
     }
