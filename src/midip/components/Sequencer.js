@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PianoRoll from './PianoRoll'
+import ChordRoll from './ChordRoll'
 import NotePane from './NotePane'
 import { connect } from 'react-redux'
 import Conductor from './Conductor'
-import Player from './Player'
 import ChannelSelector from './ChannelSelector'
 import ProgramChanger from './ProgramChanger'
 import SongSelector from './SongSelector'
@@ -47,9 +47,8 @@ class Sequencer extends Component {
                 <div className='col-md-9'>
                     <Conductor />
                     <PianoRoll />
+                    <ChordRoll />
                 </div>
-                
-                <Player />
             </div>
         </div>
     }

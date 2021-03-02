@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { addEvent } from './Store'
+import { addEvent } from '../Store'
 import { connect } from 'react-redux'
 
 class PianoRollCell extends Component {

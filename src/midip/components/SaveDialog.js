@@ -54,7 +54,8 @@ class SaveDialog extends Component {
                         className='form-control'
                         type="text" 
                         value={this.state.name} 
-                        onChange={this.onChange} 
+                        onChange={this.onChange}
+                        placeholder='title'
                         />
                     <input type="submit" value='Save' />
                 </form>

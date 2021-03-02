@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Lib from './Lib'
+import Lib from '../Lib'
 
 class NotePane extends Component {
     box = {

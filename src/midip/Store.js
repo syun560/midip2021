@@ -13,12 +13,13 @@ const initData = {
                 name: 'Piano'
             }],
             noteEvents:[],
-            tempo: 12
+            tempo: 12,
         }
     ],
     noteEvents: [],
     output: null,
     mea: 1,
+    finalMea: 1,
     channel: 0,
     channelData: [
         {
@@ -59,7 +60,8 @@ export function midipReducer(state=initData, action) {
         sortNotes(new_data)
         return {
             ...state,
-            noteEvents: new_data
+            noteEvents: new_data,
+            finalMea: state.mea < action.data.mea ? action.data.mea : state.finalMea
         }
     case 'DEL_EVENT':
         let del_data = state.noteEvents.filter(

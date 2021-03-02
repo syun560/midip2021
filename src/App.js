@@ -9,8 +9,8 @@ import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
 
-import Instrument from './midip/Instrument'
-import Sequencer from './midip/Sequencer'
+import Instrument from './midip/components/Instrument'
+import Sequencer from './midip/components/Sequencer'
 
 // Redux Persistの設定
 const persistConfig = {
@@ -48,11 +48,6 @@ class App extends Component {
 
                 </PersistGate>
             </Provider>
-
-            <hr />
-
-            <h4>Memo</h4>
-            <li><a href="https://github.com/syun560/midip2021">GitHub</a></li>
 
             <footer class="text-center text-black-50">©syun560/2021</footer>
         </div>

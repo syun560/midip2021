@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PianoRollCell from './PianoRollCell'
 import { connect } from 'react-redux'
-import Lib from './Lib'
+import Lib from '../Lib'
 
 class PianoRoll extends Component {
     // div全体（スクロールできる）
