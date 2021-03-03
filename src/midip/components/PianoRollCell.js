@@ -118,7 +118,7 @@ class PianoRollCell extends Component {
         // スタイルを追加
         let td = { width: '50px' }
         if(this.state.selected) {
-            const color = ['red','gray','orange','gray','yellow','lime','gray','green','gray','purple','gray','magenta']
+            const color = ['crimson','gray','orange','gray','yellow','lime','gray','green','gray','darkblue','gray','magenta']
             td = {
                 ...td,
                 background: color[noteNum % 12]
