@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/midip2021/static/css/main.ea1455b2.chunk.css",
-    "main.js": "/midip2021/static/js/main.fb82bcec.chunk.js",
-    "main.js.map": "/midip2021/static/js/main.fb82bcec.chunk.js.map",
+    "main.js": "/midip2021/static/js/main.eb7f116c.chunk.js",
+    "main.js.map": "/midip2021/static/js/main.eb7f116c.chunk.js.map",
     "runtime-main.js": "/midip2021/static/js/runtime-main.c6de0d6f.js",
     "runtime-main.js.map": "/midip2021/static/js/runtime-main.c6de0d6f.js.map",
     "static/css/2.150d169a.chunk.css": "/midip2021/static/css/2.150d169a.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.150d169a.chunk.css",
     "static/js/2.c97bea83.chunk.js",
     "static/css/main.ea1455b2.chunk.css",
-    "static/js/main.fb82bcec.chunk.js"
+    "static/js/main.eb7f116c.chunk.js"
   ]
 }
