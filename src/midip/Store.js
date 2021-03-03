@@ -6,7 +6,7 @@ const initData = {
         {
             id: 1,
             name: 'Sample Song',
-            updated: '2021-01-01',
+            updated: '2021/03/03 22:59',
             author: 'syun560',
             channelData: [{
                 program: 0,
