@@ -49,7 +49,7 @@ class App extends Component {
                 </PersistGate>
             </Provider>
 
-            <footer class="text-center text-black-50">©syun560/2021</footer>
+            <footer className="text-center text-black-50">©syun560/2021</footer>
         </div>
     )
     }

@@ -19,6 +19,12 @@ class SongSelector extends Component {
         })
         this.closeModal()
     }
+    delSong() {
+        this.props.dispatch({
+            type: 'DEL_SONG',
+            id: this.state.selectedID
+        })
+    }
 
     constructor(props) {
         super(props)
@@ -33,13 +39,14 @@ class SongSelector extends Component {
         this.openModal = this.openModal.bind(this)
         this.selectID = this.selectID.bind(this)
         this.openSong = this.openSong.bind(this)
+        this.delSong = this.delSong.bind(this)
     }
 
     render() {
         let items= this.props.songs.map(song=>(
             <tr key={song.id} onClick={()=>this.selectID(song.id)}
                 className={this.state.selectedID === song.id ? "table-active" : ''}>
-                <td>{song.id}: {song.name}</td>
+                <td>{song.name}</td>
                 <td>{song.updated}</td>
                 <td>{song.author}</td>
             </tr>
@@ -56,10 +63,10 @@ class SongSelector extends Component {
             </Modal.Header>
             
             <Modal.Body>
-                <table className="table table-hover">
+                <table className="table table-hover table-sm">
                 <thead className="thead-light">
                     <tr>
-                        <th>Song Name</th>
+                        <th>Title</th>
                         <th>Updated</th>
                         <th>Author</th>
                     </tr>
@@ -71,11 +78,14 @@ class SongSelector extends Component {
             </Modal.Body>
             
             <Modal.Footer>
-                { this.state.selectedID !== -1 &&
+                { this.state.selectedID !== -1 && <>
+                    <Button variant="danger" onClick={this.delSong}>
+                        Del
+                    </Button>
                     <Button variant="primary" onClick={this.openSong}>
                         Open
                     </Button>
-                }
+                </>}
             </Modal.Footer>
             </Modal>
         </>

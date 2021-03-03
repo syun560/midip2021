@@ -39,7 +39,7 @@ class ChannelSelector extends Component {
 
         return (
             <>
-            <select onChange={this.ChangeSelector} defaultValue="-1" value={this.props.channel}>{ items }</select>
+            <select onChange={this.ChangeSelector} value={this.props.channel}>{ items }</select>
             <button className="btn btn-secondary btn-sm" onClick={this.AddChannel}>+</button>
             </>
         )

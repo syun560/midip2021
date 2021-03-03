@@ -3,18 +3,6 @@ import { addEvent } from '../Store'
 import { connect } from 'react-redux'
 
 class PianoRollCell extends Component {
-    tdUnselected = {
-        width: '50px'
-    }
-    tdSelected = {
-        width: '50px',
-        background: 'cyan'
-    }
-    border = {
-        borderLeft: '2px solid blue',
-        background: 'cyan'
-    }
-
     // セルがマウスオーバーされた時
     doMouseEnter(e) {
         // シングルモードの時
@@ -118,7 +106,7 @@ class PianoRollCell extends Component {
         let tick = this.props.col
 
         // イベントを検索し、見つけたらtrueとする（なんか遅くなりそうな実装）
-        let findData = this.props.noteEvents.find(noteEvent=> (
+        const findData = this.props.noteEvents.find(noteEvent=> (
             noteEvent.channel == this.props.channel &&
             noteEvent.mea == this.props.mea &&
             noteEvent.note == noteNum &&
@@ -127,10 +115,27 @@ class PianoRollCell extends Component {
         if (findData === undefined) this.state.selected = false
         else this.state.selected = true
 
+        // スタイルを追加
+        let td = { width: '50px' }
+        if(this.state.selected) {
+            const color = ['red','gray','orange','gray','yellow','lime','gray','green','gray','purple','gray','magenta']
+            td = {
+                ...td,
+                background: color[noteNum % 12]
+            }
+        }
+
+        // tick4つごとに区切り線を追加
+        if (tick % 4 == 0){
+            td = {
+                ...td,
+                borderLeft: '2px solid #e7e7e7'
+            }
+        }
+
         return (
-            <td style={this.state.selected ? this.tdSelected : this.tdUnselected}
+            <td style={td}
             onClick={this.doClick} onMouseEnter={this.doMouseEnter} data-row={noteNum} data-col={tick}>
-                <div style={this.border}></div>
             </td>
         )
     }

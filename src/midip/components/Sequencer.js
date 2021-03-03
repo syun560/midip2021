@@ -47,7 +47,7 @@ class Sequencer extends Component {
                 <div className='col-md-9'>
                     <Conductor />
                     <PianoRoll />
-                    <ChordRoll />
+                    {/* <ChordRoll /> */}
                 </div>
             </div>
         </div>

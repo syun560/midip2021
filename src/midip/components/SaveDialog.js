@@ -45,7 +45,7 @@ class SaveDialog extends Component {
 
         <Modal show={this.state.isModalOpen} onHide={this.closeModal}>
             <Modal.Header closeButton>
-                <Modal.Title>Save</Modal.Title>
+                <Modal.Title>Save As...</Modal.Title>
             </Modal.Header>
             
             <Modal.Body>
@@ -55,7 +55,7 @@ class SaveDialog extends Component {
                         type="text" 
                         value={this.state.name} 
                         onChange={this.onChange}
-                        placeholder='title'
+                        placeholder='Title'
                         />
                     <input type="submit" value='Save' />
                 </form>

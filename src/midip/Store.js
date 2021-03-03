@@ -13,12 +13,16 @@ const initData = {
                 name: 'Piano'
             }],
             noteEvents:[],
+            chordEvents: [],
             tempo: 12,
+            finalMea: 1
         }
     ],
+    chordEvents: [],
     noteEvents: [],
     output: null,
     mea: 1,
+    nowTick: 0,
     finalMea: 1,
     channel: 0,
     channelData: [
@@ -82,6 +86,15 @@ export function midipReducer(state=initData, action) {
             noteEvents: initData.noteEvents,
         }
 
+    // コードアノテーション管理-----------------------------
+    case 'ADD_CHORD':
+        const sl = state.chordEvents.slice()
+        sl.push(action.data)
+        return {
+            ...state,
+            chordEvents: sl
+        }
+
     // MIDIデバイス操作-------------------------------------
     case 'REGISTER_OUTPUT':
         return {
@@ -127,6 +140,11 @@ export function midipReducer(state=initData, action) {
             ...state,
             mea: mea,
         }
+    case 'MOVE_TICK':
+        return {
+            ...state,
+            nowTick: action.nowTick,
+        }
 
     // チャンネル操作-------------------------------------
     case 'MOVE_CHANNEL':
@@ -166,7 +184,8 @@ export function midipReducer(state=initData, action) {
             updated: date,
             author: 'syun560',
             channelData: state.channelData,
-            noteEvents: state.noteEvents
+            noteEvents: state.noteEvents,
+            finalMea: state.finalMea
         }
         newSongs.push(newSong)
 
@@ -188,8 +207,15 @@ export function midipReducer(state=initData, action) {
             ...state,
             channelData: [...foundSong.channelData],
             noteEvents: [...foundSong.noteEvents],
+            finalMea: foundSong.finalMea,
             mea: initData.mea,
             channel: initData.channel
+        }
+    case 'DEL_SONG':
+        // 指定されたidの曲を削除
+        return {
+            ...state,
+            songs: state.songs.filter(song => song.id !== action.id),
         }
         
     default: 

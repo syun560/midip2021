@@ -64,7 +64,12 @@ class Conductor extends Component {
             nextTick %= this.maxTick
             if (!this.state.isLoop) {
                 // なぜか遅れる（要対処！！！！）
-                this.props.dispatch({ type:'MOVE_MEA', mea: this.props.mea*1 +1 })
+                // 最後の小節だったら最初に戻る
+                console.log(this.props.finalMea)
+                if (this.props.mea > this.props.finalMea)
+                    this.props.dispatch({ type:'MOVE_MEA', mea: 0 })
+                else
+                    this.props.dispatch({ type:'MOVE_MEA', mea: this.props.mea*1 +1 })       
             }
         }
         this.setState({ nowTick: nextTick })

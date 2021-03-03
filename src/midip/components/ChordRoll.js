@@ -1,36 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import ChordRollCell from './ChordRollCell'
 
 class ChordRoll extends Component {
     th = {
         width: '100px'
     }
-    td = {
-        width: '50px'
-    }
-    tdNow = {
-        width: '50px',
-        background: 'yellow'
-    }
     clicker = {
         overflowY: 'scroll',
+        cursor: 'pointer'
     }
     maxTick = 16
-    ChangeChord() {
-        
-    }
-
-    PlayToggle() {
-        if (this.state.isPlaying) {
-            this.setState({isPlaying: false})
-            clearTimeout(this.timer)
-        }
-        else {
-            this.setState({isPlaying: true})
-            this.Play()
-            this.timer = setTimeout(this.Proceed,  240 * 1000 / this.state.bpm / this.maxTick )
-        }
-    }
 
     constructor(props){
         super(props)
@@ -38,19 +18,19 @@ class ChordRoll extends Component {
         // ステートの設定
         this.state = {
         }
-        
     }
 
     render() {
-        let ticks = []
+
+        const ticks = []
         for (let i = 0; i < this.maxTick; i++) {
-            ticks.push(<td key={i} data-tick={i} onClick={this.ChangeChord} style={this.td}>C</td>)
+            ticks.push(<ChordRollCell key={i} tick={i} />)
         }
 
         return (
             <div style={this.clicker}>
                 <table className="table table-bordered table-sm"><tbody><tr>
-                    <th style={this.th}>4/4</th>
+                    <th style={this.th}>C</th>
                     {ticks}
                 </tr></tbody></table>
             </div>

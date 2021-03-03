@@ -9,11 +9,22 @@ class ChordPlayerCell extends Component {
         const chord = this.props.chord
         const noteEvents = Lib.chordNameToNoteEvents(chord)
         
+        // 音を鳴らす
         noteEvents.map(noteEvent=>{
             this.props.dispatch({
                 type: 'NOTE_ON',
                 data: noteEvent
             })
+        })
+
+        // コードをアノテーションする
+        this.props.dispatch({
+            type: 'ADD_CHORD',
+            data: {
+                mea: this.props.mea,
+                tick: this.props.nowTick,
+                chord: this.props.chord
+            }
         })
     }
 
