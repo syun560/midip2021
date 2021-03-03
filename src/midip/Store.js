@@ -182,7 +182,7 @@ export function midipReducer(state=initData, action) {
             id: state.songs[state.songs.length - 1].id + 1,
             name: action.name,
             updated: date,
-            author: 'syun560',
+            author: 'anonymous',
             channelData: state.channelData,
             noteEvents: state.noteEvents,
             finalMea: state.finalMea
