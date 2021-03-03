@@ -1,6 +1,6 @@
 # MIDIP
 
-A simple MIDI sequencer working at your browser with WEB MIDI API
+A simple music sequencer working at your browser with Web MIDI API
 
 [demo](https://syun560.github.io/midip2021/)
 
