@@ -62,6 +62,7 @@ export function midipReducer(state=initData, action) {
         let new_data = state.noteEvents.slice()
         new_data.push(action.data)
         sortNotes(new_data)
+
         return {
             ...state,
             noteEvents: new_data,

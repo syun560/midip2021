@@ -8,6 +8,7 @@ import ChannelSelector from './ChannelSelector'
 import ProgramChanger from './ProgramChanger'
 import SongSelector from './SongSelector'
 import SaveDialog from './SaveDialog'
+import SMFWriter from './SMFWriter'
 
 
 class Sequencer extends Component {
@@ -36,6 +37,7 @@ class Sequencer extends Component {
                         <div>
                             <SongSelector />
                             <SaveDialog />
+                            {/* <SMFWriter /> */}
                         </div>
                         <ChannelSelector />
                         <ProgramChanger />
