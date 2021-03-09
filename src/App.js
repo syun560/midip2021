@@ -25,7 +25,7 @@ const persistedReducer = persistReducer(persistConfig, midipReducer)
 
 // ストア、パーシスタの作成
 let store = createStore(persistedReducer)
-let pstore = persistStore(store)
+export let pstore = persistStore(store)
 
 class App extends Component {
     constructor(props){

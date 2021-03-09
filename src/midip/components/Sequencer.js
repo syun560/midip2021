@@ -9,7 +9,7 @@ import ProgramChanger from './ProgramChanger'
 import SongSelector from './SongSelector'
 import SaveDialog from './SaveDialog'
 import SMFWriter from './SMFWriter'
-
+import PersistForm from '../PersistForm'
 
 class Sequencer extends Component {
     doClick(e) {
@@ -37,6 +37,7 @@ class Sequencer extends Component {
                         <div>
                             <SongSelector />
                             <SaveDialog />
+                            <PersistForm />
                             {/* <SMFWriter /> */}
                         </div>
                         <ChannelSelector />
