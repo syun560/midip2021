@@ -39,6 +39,7 @@ class App extends Component {
 
     render() {
     return (
+        <>
         <div className="container-fluid" style={this.style}>
             <Provider store={store}>
                 <PersistGate loading={<p>loading...</p>} persistor={pstore}>
@@ -51,6 +52,7 @@ class App extends Component {
 
             <footer className="text-center text-black-50">©syun560/2021</footer>
         </div>
+        </>
     )
     }
 }
