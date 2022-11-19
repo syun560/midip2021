@@ -2,24 +2,24 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Lib from '../Lib'
 
-class SMFWriter extends Component {
+const SMFWriter = (props) => {
 
     // SMFに書き出す
-    SMFWrite() {
+    const SMFWrite = () => {
         const MidiWriter = require('midi-writer-js')
         const tracks = []
         
         // チャンネル数分繰り返す
-        this.props.channelData.map((ch, index) => {
-            const newTrack = new MidiWriter.Track()
+        props.channelData.map((ch, index) => {
+            let newTrack = new MidiWriter.Track()
             
             alert('ch: ' + index + 'Program: ' + ch.program)
 
             // Program Change
-            newTrack.addEvent(new MidiWriter.ProgramChangeEvent({instrument: ch.program, channel: index}))
+            //newTrack.addEvent(new MidiWriter.ProgramChangeEvent({instrument: ch.program, channel: index}))
             
             // 現在のチャンネルのnoteEventを取り出す
-            const ne = this.props.noteEvents.filter(noteEvent=> noteEvent.channel === index)
+            let ne = props.noteEvents.filter(noteEvent=> noteEvent.channel === index)
 
             // noteEvents
             ne.map(noteEvent => {
@@ -45,22 +45,7 @@ class SMFWriter extends Component {
         //writer.saveMIDI('name')
     }
 
-    constructor(props){
-        super(props)
-
-        // ステートの設定
-        this.state = {
-        }
-        
-        this.SMFWrite = this.SMFWrite.bind(this)
-    }
-
-    render() {
-
-        return (
-            <button className="btn btn-primary" onClick={this.SMFWrite}>SMF</button>
-        )
-    }
+    return <button className="btn btn-primary" onClick={SMFWrite}>SMF</button>
 }
 
 export default connect(state=>state)(SMFWriter)

@@ -11,50 +11,38 @@ import SaveDialog from './SaveDialog'
 import SMFWriter from './SMFWriter'
 import PersistForm from '../PersistForm'
 
-class Sequencer extends Component {
-    doClick(e) {
-        this.props.dispatch({
+const Sequencer = (props) => {
+    const doClick = (e) => {
+        props.dispatch({
             type: 'DEL_ALL'
         })
     }
 
-    constructor(props){
-        super(props)
-
-        // ステートの設定
-        this.state = {
-        }
-        
-        this.doClick = this.doClick.bind(this)
-    }
-
-    render() {
-        return <div>
-            <div className='row mt-4'>
-                
-                <div className='col-md-3'>
+    return <div>
+        <div className='row mt-4'>
+            <div className='col-md-3'>
+                <div>
                     <div>
-                        <div>
-                            <SongSelector />
-                            <SaveDialog />
-                            <PersistForm />
-                            {/* <SMFWriter /> */}
-                        </div>
-                        <ChannelSelector />
-                        <ProgramChanger />
+                        <SongSelector />
+                        <SaveDialog />
+                        {/* <SMFWriter /> */}
+                        <PersistForm />
                     </div>
-                    <NotePane />
-                    <button className='btn btn-danger' onClick={this.doClick}>Del All Event</button>
+                    <ChannelSelector />
+                    <ProgramChanger />
                 </div>
+                <NotePane />
+                <button className='btn btn-danger' onClick={doClick}>Del All Event</button>
+            </div>
 
-                <div className='col-md-9'>
-                    <Conductor />
-                    <PianoRoll />
-                    {/* <ChordRoll /> */}
-                </div>
+            <div className='col-md-9'>
+                <Conductor />
+                <PianoRoll />
+                <ChordRoll />
+                <SMFWriter />
             </div>
         </div>
-    }
+    </div>
 }
 
 export default connect(state=>state)(Sequencer)

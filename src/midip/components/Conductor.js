@@ -78,7 +78,7 @@ class Conductor extends Component {
         
         // 小節の終わりの一個前のtickに来たら、delayTimeを少し短くする（無理やりな実装）
         let delayTime = 240 * 1000 / this.state.bpm / this.maxTick
-        if (nextTick == this.maxTick - 1 && !this.state.isLoop) delayTime -= 80
+        //if (nextTick == this.maxTick - 1 && !this.state.isLoop) delayTime -= 80
         
         this.timer = setTimeout(this.Proceed, delayTime )
     }

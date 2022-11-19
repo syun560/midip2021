@@ -6,6 +6,7 @@ class ChordRollCell extends Component {
         width: '50px'
     }
     ChangeChord(tick, chord) {
+        alert('うんち')
         this.props.dispatch({
             type: 'ADD_CHORD',
             data: {
@@ -34,7 +35,7 @@ class ChordRollCell extends Component {
         ))
 
         return (
-            <td style={this.td}>
+            <td style={this.td} onClick={()=>this.ChangeChord(this.props.tick, 'Cm')}>
                 {findData && findData.chord}
             </td>
         )
